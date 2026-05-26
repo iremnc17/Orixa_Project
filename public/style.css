@@ -1,0 +1,386 @@
+body.light-mode {
+    --bg-color: #f5f6fa;       /* Tam tersi yumuşak aydınlık arka plan */
+    --card-bg: #ffffff;        /* Tam tersi temiz beyaz kartlar */
+    --text-main: #121212;      /* Tam tersi koyu ana metin */
+    --text-dim: #555555;       /* Tam tersi soft gri alt metin */
+    --primary-purple: #703cd1; /* Aydınlık modda daha okunaklı mor */
+    --neon-blue: #0072ff;      /* Aydınlık modda daha okunaklı mavi */
+    --preview-bg: radial-gradient(circle, #e0e0e0 0%, #f5f5f5 100%);
+    --navbar-bg: rgba(255, 255, 255, 0.90); /* Aydınlık cam efekti */
+    --border-color: #e0e0e0;   /* Açık gri border hattı */
+    --input-bg: #ffffff;       /* Beyaz input kutuları */
+    --hero-bg: radial-gradient(circle at 50% 30%, #e8eaf6 0%, #f5f6fa 70%); /* Aydınlık hero arka planı */
+}
+
+:root {
+    --bg-color: #050505;
+    --card-bg: #121212;
+    --primary-purple: #8957e5;
+    --neon-blue: #00d4ff;
+    --text-main: #ffffff;
+    --text-dim: #a0a0a0;
+    --preview-bg: radial-gradient(circle, #1a1a2e 0%, #050505 100%);
+    --navbar-bg: rgba(18, 18, 18, 0.85);
+    --border-color: #333333;
+    --input-bg: #1a1a1a;
+    --hero-bg: radial-gradient(circle at 50% 30%, #1a1a2e 0%, #050505 70%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.navbar {
+    background: var(--navbar-bg);
+    backdrop-filter: blur(15px);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: -1px;
+    transition: color 0.3s;
+}
+.nav-logo span { color: var(--neon-blue); }
+
+.nav-menu { display: flex; list-style: none; align-items: center; }
+
+.nav-links {
+    color: var(--text-main);
+    text-decoration: none !important; /* Alt çizgiyi tamamen iptal eder */
+    padding: 0.5rem 1.2rem;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.nav-links:hover { color: var(--primary-purple); }
+
+
+.nav-links.active {
+    color: var(--neon-blue) !important;
+    font-weight: 600;
+}
+
+
+.nav-btn {
+    background: var(--primary-purple) !important;
+    color: white !important;
+    border-radius: 8px;
+    padding: 10px 20px !important;
+    margin-left: 15px;
+    font-weight: bold;
+    text-decoration: none !important; /* Çizgiyi net olarak uçurur */
+    transition: 0.3s;
+}
+
+.nav-btn:hover { background: #5a32a3 !important; transform: scale(1.05); color: white !important; }
+
+
+.auth-nav-link {
+    border: 1px solid var(--border-color) !important; 
+    padding: 10px 20px !important; 
+    border-radius: 8px; 
+    margin-left: 10px;
+    text-decoration: none !important;
+}
+
+
+.hero-section {
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+    background: var(--hero-bg);
+    transition: background 0.3s ease;
+}
+
+.hero-title { font-size: 4rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -2px; color: var(--text-main); }
+.hero-title span { color: var(--primary-purple); }
+.hero-subtitle { font-size: 1.2rem; color: var(--text-dim); max-width: 700px; margin: 0 auto 40px; }
+.hero-btns { display: flex; gap: 20px; justify-content: center; }
+
+/* Buton Kontrast Geçişleri */
+body.light-mode .btn-primary { background: #121212; color: white; }
+body.light-mode .btn-primary:hover { background: #333; }
+.btn-primary { background: white; color: black; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+.btn-secondary { border: 1px solid var(--border-color); color: var(--text-main); padding: 15px 35px; border-radius: 50px; text-decoration: none; transition: 0.3s; }
+
+.featured-products { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
+.section-title { font-size: 2.5rem; margin-bottom: 50px; text-align: left; color: var(--text-main); }
+
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.product-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; }
+
+body.light-mode .product-card:hover {
+    box-shadow: 0 10px 25px rgba(112, 60, 209, 0.15); 
+}
+.product-card:hover { 
+    border-color: var(--primary-purple); 
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(137, 87, 229, 0.35); 
+}
+
+.product-img { height: 200px; background: #1a1a1a; width: 100%; position: relative; overflow: hidden; }
+
+/* Izgara Deseni Efekti */
+body.light-mode .product-img::before {
+    background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+}
+.product-img::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 15px 15px;
+    opacity: 0.7;
+}
+
+/* Aydınlık Modda Tam Tersine Dönen Kart Gradyan Renkleri */
+body.light-mode .img-kod { background: linear-gradient(45deg, #e1bee7, #b39ddb); }
+body.light-mode .img-tasarim { background: linear-gradient(45deg, #b3e5fc, #81d4fa); }
+body.light-mode .img-rehber { background: linear-gradient(45deg, #ffe0b2, #ffcc80); }
+
+.img-kod { background: linear-gradient(45deg, #8957e5, #5a32a3); }
+.img-tasarim { background: linear-gradient(45deg, #00d4ff, #0072ff); }
+.img-rehber { background: linear-gradient(45deg, #f39c12, #d35400); }
+
+.product-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+
+.product-body h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-main);
+}
+
+.badge { background: rgba(137, 87, 229, 0.15); color: var(--primary-purple); font-size: 0.75rem; font-weight: bold; padding: 6px 12px; border-radius: 6px; margin-bottom: 15px; display: inline-block; width: fit-content; }
+.price { font-size: 1.3rem; font-weight: bold; color: var(--neon-blue); }
+
+.buy-btn { padding: 10px 25px; background: var(--primary-purple); border: none; color: white; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+body.light-mode .buy-btn:hover { background: #121212; color: white; }
+.buy-btn:hover { background: white; color: black; }
+
+
+input {
+    width: 100%; padding: 12px 15px;
+    background: var(--input-bg); border: 1px solid var(--border-color);
+    border-radius: 8px; color: var(--text-main); outline: none; transition: 0.3s;
+}
+input:focus { border-color: var(--primary-purple); box-shadow: 0 0 10px rgba(137, 87, 229, 0.3); }
+
+
+.page-main-container {
+    padding-top: 130px; max-width: 1200px; margin: 0 auto; padding-left: 20px; padding-right: 20px;
+}
+.page-header-container {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;
+}
+.page-main-title {
+    font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; color: var(--text-main);
+}
+.page-main-title span { color: var(--neon-blue); }
+.page-main-subtitle {
+    color: var(--text-dim); margin-top: 5px;
+}
+
+
+.background-overlay {
+    position: absolute; width: 600px; height: 600px;
+    background: var(--primary-purple); filter: blur(200px);
+    opacity: 0.1; top: -10%; right: -10%; z-index: -1;
+}
+
+@media screen and (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; }
+    .nav-menu { position: fixed; top: 80px; left: -100%; flex-direction: column; background: var(--bg-color); width: 100%; height: 100vh; transition: 0.4s; }
+    .nav-menu.active { left: 0; }
+    .menu-toggle { display: block; }
+}
+
+
+
+.login-page-body {
+    background-color: #050505 !important; 
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.login-page-body .background-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(137, 87, 229, 0.14) 0%, rgba(0, 212, 255, 0.04) 50%, transparent 70%);
+    filter: blur(30px);
+    opacity: 1;
+    z-index: 1;
+}
+
+.login-page-body .background-overlay::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 580px;
+    height: 580px;
+    background: radial-gradient(circle at 70% 30%, rgba(137, 87, 229, 0.35) 0%, rgba(0, 212, 255, 0.12) 40%, transparent 75%);
+    filter: blur(40px);
+    border-radius: 50%;
+}
+
+
+.login-container {
+    position: relative;
+    z-index: 2; 
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-container header {
+    margin-bottom: 30px;
+}
+
+.login-container .logo {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin: 0;
+    color: #ffffff;
+}
+
+.login-container .logo span {
+    color: #00d4ff; 
+}
+
+.login-container .tagline {
+    color: #88888f;
+    font-size: 0.9rem;
+    margin: 8px 0 0 0;
+}
+
+
+.auth-card {
+    background-color: #121214;
+    border: 1px solid #222226;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.auth-card h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.auth-card p {
+    margin: 0 0 25px 0;
+    color: #88888f;
+    font-size: 0.95rem;
+}
+
+.auth-card .input-group {
+    margin-bottom: 20px;
+}
+
+/* Giriş Kutuları */
+.auth-card input[type="text"],
+.auth-card input[type="password"] {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: #1a1a1e;
+    border: 1px solid #2d2d34;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-card input[type="text"]:focus,
+.auth-card input[type="password"]:focus {
+    border-color: #8957e5;
+    box-shadow: 0 0 8px rgba(137, 87, 229, 0.35);
+}
+
+/* Canlı Parlayan Mor Giriş Butonu */
+.btn-glow {
+    width: 100%;
+    padding: 14px;
+    background: #6439b7; 
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-glow:hover {
+    background: #7644d6;
+    transform: translateY(-1px);
+}
+
+
+.footer-links {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #66666e;
+}
+
+.footer-links a {
+    color: #8957e5;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #00d4ff;
+}

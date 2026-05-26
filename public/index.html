@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orixa | Dijital Varlık Pazarı</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">ORIXA<span>.</span></a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-links active">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="kodlar.html" class="nav-links">Kod</a></li>
+                <li class="nav-item"><a href="tasarimlar.html" class="nav-links">Tasarım</a></li>
+                <li class="nav-item"><a href="rehberler.html" class="nav-links">Rehber</a></li>
+                <li class="nav-item"><a href="#" class="nav-links theme-toggle-nav-link" onclick="temaDegistir()">🌗 Mod</a></li>
+                <li class="nav-item"><a href="#" class="nav-links nav-btn">🛒 Sepet (0)</a></li>
+                
+                <li class="nav-item" id="authNavContainer">
+                    <a href="login.html" class="nav-links auth-nav-link">Giriş Yap</a>
+                </li>
+            </ul>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="background-overlay"></div>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Geleceğin Projelerini <span>Orixa</span> ile İnşa Edin</h1>
+                <p class="hero-subtitle">En kaliteli kod blokları, 3D tasarımlar ve teknik rehberler tek bir platformda.</p>
+                
+                <div class="search-container" style="margin-top: 20px;">
+                    <input type="text" id="searchInput" placeholder="Varlık ara (örn: Python, UI Kit...)">
+                </div>
+
+                <div class="hero-btns" style="margin-top: 30px;">
+                    <a href="#products" class="btn-primary">Varlıkları Keşfet</a>
+                    <a href="rehberler.html" class="btn-secondary">Nasıl Çalışır?</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="featured-products">
+            <h2 class="section-title">Popüler Varlıklar</h2>
+            
+            <div id="productContainer" class="product-grid">
+                <p style="color: #666; text-align: center; grid-column: 1 / -1;">Varlıklar yükleniyor...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

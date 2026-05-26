@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orixa | Analiz Paneli</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">ORIXA<span>.</span></a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-links">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="kodlar.html" class="nav-links">Varlıklar</a></li>
+                <li class="nav-item"><a href="istatistikler.html" class="nav-links">Analiz</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 120px; max-width: 1100px; margin-left: auto; margin-right: auto; padding: 0 20px;">
+        <header style="text-align: center; margin-bottom: 40px;">
+            <h1 class="logo">Veri Yönetimi<span>.</span></h1>
+            <p class="tagline">Orixa Marketplace Canlı Stok ve Satış Takibi</p>
+        </header>
+
+        <div style="background: #121212; padding: 25px; border-radius: 20px; border: 1px solid #333; overflow-x: auto;">
+            <table id="statsTable" style="width: 100%; border-collapse: collapse; color: white; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 2px solid var(--primary-purple);">
+                        <th style="padding: 15px;">Ürün ID</th>
+                        <th style="padding: 15px;">Varlık Adı</th>
+                        <th style="padding: 15px;">Kategori</th>
+                        <th style="padding: 15px;">Fiyat</th>
+                        <th style="padding: 15px;">Satış Adedi</th>
+                        <th style="padding: 15px;">İşlem</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if(typeof tabloyuDoldur === "function") tabloyuDoldur();
+        });
+    </script>
+</body>
+</html>

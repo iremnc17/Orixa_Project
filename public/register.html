@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orixa | Kayıt Ol</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-page-body">
+    <div class="background-overlay"></div>
+    
+    <div class="login-container">
+        <header>
+            <h1 class="logo">ORIXA<span>.</span></h1>
+            <p class="tagline">Kod, Tasarım ve Rehberiniz</p>
+        </header>
+
+        <main class="hero">
+            <div class="auth-card">
+                <h2>Hesap Oluştur</h2>
+                <p>Orixa topluluğuna katılarak geleceği inşa edin.</p>
+                
+                <form id="registerForm">
+                    <div class="input-group">
+                        <!-- Gerçek e-posta zorunluluğu için type="email" kullandık -->
+                        <input type="email" id="regEmail" required placeholder="E-posta Adresiniz">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="regUsername" required placeholder="Kullanıcı Adı">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="regPassword" required placeholder="Güçlü Bir Şifre">
+                    </div>
+                    <button type="submit" class="btn-glow">Kayıt Ol ve Başla</button>
+                </form>
+                
+                <div class="footer-links">
+                    <a href="login.html">Zaten hesabım var</a> • <a href="index.html">Geri Dön</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

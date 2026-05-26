@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Orixa | Kod Kütüphanesi</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">ORIXA<span>.</span></a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-links">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="kodlar.html" class="nav-links active">Kod</a></li>
+                <li class="nav-item"><a href="tasarimlar.html" class="nav-links">Tasarım</a></li>
+                <li class="nav-item"><a href="rehberler.html" class="nav-links">Rehber</a></li>
+                <li class="nav-item"><a href="#" class="nav-links theme-toggle-nav-link" onclick="temaDegistir()">🌗 Mod</a></li>
+                <li class="nav-item"><a href="#" class="nav-links nav-btn">🛒 Sepet (0)</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="background-overlay"></div>
+
+    <main class="page-main-container">
+        
+        <div class="page-header-container">
+            <div>
+                <h1 class="page-main-title">Kod Kütüphanesi<span>.</span></h1>
+                <p class="page-main-subtitle">Geliştiriciler için hazır, optimize ve güvenli kod blokları.</p>
+            </div>
+            <div>
+                <input type="text" id="searchInput" placeholder="Kütüphanede ara (örn: Python, SIEM, Unity)...">
+            </div>
+        </div>
+
+        <section id="productContainer" class="product-grid">
+            <p style="color: var(--text-dim); text-align: center; grid-column: 1 / -1;">Kodlar veritabanından yükleniyor...</p>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
