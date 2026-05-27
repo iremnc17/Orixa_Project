@@ -442,9 +442,9 @@ async function urunleriGetir() {
         let filteredProducts = products;
 
         if (currentFile === "kodlar.html") {
-            filteredProducts = products.filter(p => p.category !== 'tasarim');
+            filteredProducts = products.filter(p => p.category.toLowerCase() !== 'tasarim');
         } else if (currentFile === "tasarimlar.html") {
-            filteredProducts = products.filter(p => p.category === 'tasarim');
+            filteredProducts = products.filter(p => p.category.toLowerCase() === 'tasarim');
         }
 
         if (filteredProducts.length === 0) {
