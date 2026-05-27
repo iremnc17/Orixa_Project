@@ -10,18 +10,18 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">ORIXA<span>.</span></a>
+            <a href="{{ url_for('index') }}" class="nav-logo">ORIXA<span>.</span></a>
             
             <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-links active">Ana Sayfa</a></li>
-                <li class="nav-item"><a href="kodlar.html" class="nav-links">Kod</a></li>
-                <li class="nav-item"><a href="tasarimlar.html" class="nav-links">Tasarım</a></li>
-                <li class="nav-item"><a href="rehberler.html" class="nav-links">Rehber</a></li>
+                <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-links active">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="{{ url_for('kodlar') }}" class="nav-links">Kod</a></li>
+                <li class="nav-item"><a href="{{ url_for('tasarimlar') }}" class="nav-links">Tasarım</a></li>
+                <li class="nav-item"><a href="{{ url_for('rehberler') }}" class="nav-links">Rehber</a></li>
                 <li class="nav-item"><a href="#" class="nav-links theme-toggle-nav-link" onclick="temaDegistir()">🌗 Mod</a></li>
                 <li class="nav-item"><a href="#" class="nav-links nav-btn">🛒 Sepet (0)</a></li>
                 
                 <li class="nav-item" id="authNavContainer">
-                    <a href="login.html" class="nav-links auth-nav-link">Giriş Yap</a>
+                    <a href="{{ url_for('login') }}" class="nav-links auth-nav-link">Giriş Yap</a>
                 </li>
             </ul>
 
@@ -47,7 +47,7 @@
 
                 <div class="hero-btns" style="margin-top: 30px;">
                     <a href="#products" class="btn-primary">Varlıkları Keşfet</a>
-                    <a href="rehberler.html" class="btn-secondary">Nasıl Çalışır?</a>
+                    <a href="{{ url_for('rehberler') }}" class="btn-secondary">Nasıl Çalışır?</a>
                 </div>
             </div>
         </section>

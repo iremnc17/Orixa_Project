@@ -20,11 +20,45 @@ db_config = {
     'ssl_verify_cert': False
 }
 
-# --- YENİ EKLENEN ANA SAYFA ROTASI ---
+# --- HTML SAYFA ROTALARI ---
+
 @app.route('/')
 def index():
     return render_template('index.html')
-# ------------------------------------
+
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
+@app.route('/istatistikler')
+def istatistikler():
+    return render_template('istatistikler.html')
+
+@app.route('/kodlar')
+def kodlar():
+    return render_template('kodlar.html')
+
+@app.route('/login')
+def login_page():
+    return render_template('login.html')
+
+@app.route('/odeme')
+def odeme():
+    return render_template('odeme.html')
+
+@app.route('/register')
+def register_page():
+    return render_template('register.html')
+
+@app.route('/rehberler')
+def rehberler():
+    return render_template('rehberler.html')
+
+@app.route('/tasarimlar')
+def tasarimlar():
+    return render_template('tasarimlar.html')
+
+# ----------------------------
 
 def is_valid_email(email):
     regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'

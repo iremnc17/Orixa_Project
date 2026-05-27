@@ -10,11 +10,11 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">ORIXA<span>.</span></a>
+            <a href="{{ url_for('index') }}" class="nav-logo">ORIXA<span>.</span></a>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-links">Ana Sayfa</a></li>
-                <li class="nav-item"><a href="kodlar.html" class="nav-links">Varlıklar</a></li>
-                <li class="nav-item"><a href="istatistikler.html" class="nav-links">Analiz</a></li>
+                <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-links">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="{{ url_for('kodlar') }}" class="nav-links">Varlıklar</a></li>
+                <li class="nav-item"><a href="{{ url_for('istatistikler') }}" class="nav-links">Analiz</a></li>
             </ul>
         </div>
     </nav>

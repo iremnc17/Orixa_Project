@@ -6,294 +6,8 @@
     <title>Orixa - Güvenli Ödeme Sayfası</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #050505;
-            --card-bg: #121214; 
-            --primary-purple: #8957e5;
-            --neon-blue: #00d4ff;
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-            --border-color: #222226; 
-            --input-bg: #1a1a1e; 
-            --input-border: #2d2d34;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            position: relative;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        .background-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(137, 87, 229, 0.14) 0%, rgba(0, 212, 255, 0.04) 50%, transparent 70%);
-            filter: blur(30px);
-            opacity: 1;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* SAĞ ÜST KÖŞEDEKİ O ÖZEL NEON GRADYAN YUVARLAĞI */
-        .background-overlay::before {
-            content: '';
-            position: absolute;
-            top: -120px;
-            right: -120px;
-            width: 580px;
-            height: 580px;
-            background: radial-gradient(circle at 70% 30%, rgba(137, 87, 229, 0.35) 0%, rgba(0, 212, 255, 0.12) 40%, transparent 75%);
-            filter: blur(40px);
-            border-radius: 50%;
-        }
-
-        /* Ödeme İçerik Kutusu */
-        .checkout-container {
-            position: relative;
-            z-index: 2; /* Parlaklığın üzerine çıkması için */
-            display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            max-width: 1000px;
-            width: 100%;
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Sol Taraf: Sipariş Özeti */
-        .order-summary {
-            padding: 3rem;
-            border-right: 1px solid var(--border-color);
-            background: rgba(18, 18, 20, 0.4);
-        }
-
-        .order-summary h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            letter-spacing: -0.5px;
-        }
-
-        .order-summary h2 i {
-            color: var(--primary-purple);
-        }
-
-        .cart-items-list {
-            max-height: 280px;
-            overflow-y: auto;
-            margin-bottom: 2rem;
-            padding-right: 5px;
-        }
-
-        /* Scrollbar Özelleştirme */
-        .cart-items-list::-webkit-scrollbar {
-            width: 6px;
-        }
-        .cart-items-list::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 4px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .cart-item-info h4 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 4px;
-        }
-
-        .cart-item-info p {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-        }
-
-        .cart-item-price {
-            font-weight: 700;
-            color: var(--neon-blue);
-            font-size: 1.05rem;
-        }
-
-        .total-price-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 2rem;
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .total-price-box span:first-child {
-            color: var(--text-dim);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .total-price-box span:last-child {
-            color: var(--neon-blue);
-            text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-        }
-
-        /* Sağ Taraf: Kart Formu */
-        .payment-form-container {
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background-color: rgba(26, 26, 30, 0.2);
-        }
-
-        .payment-form-container h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            letter-spacing: -0.5px;
-        }
-
-        .payment-form-container h2 i {
-            color: var(--neon-blue);
-        }
-
-        .izco-badge {
-            font-size: 0.8rem;
-            background: rgba(0, 212, 255, 0.08);
-            color: var(--neon-blue);
-            padding: 6px 14px;
-            border-radius: 6px;
-            align-self: flex-start;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            font-weight: 600;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.88rem;
-            color: var(--text-dim);
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-wrapper i {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #55555f;
-            transition: color 0.3s;
-        }
-
-        /* CSS dosyanızdaki orijinal Giriş Kutuları mimarisi */
-        .form-control {
-            width: 100%;
-            background-color: var(--input-bg);
-            border: 1px solid var(--input-border);
-            padding: 14px 16px 14px 46px;
-            color: var(--text-main);
-            border-radius: 8px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-purple);
-            box-shadow: 0 0 8px rgba(137, 87, 229, 0.35);
-        }
-
-        .form-control:focus + i {
-            color: var(--primary-purple);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.2rem;
-        }
-
-        /* CSS Dosyandaki Canlı Parlayan Mor Giriş Butonunun Geliştirilmiş Versiyonu */
-        .btn-pay {
-            width: 100%;
-            padding: 15px;
-            background: #6439b7; /* Orijinal koyu mor tonun */
-            border: none;
-            border-radius: 8px;
-            color: #ffffff;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn-pay:hover {
-            background: #7644d6;
-            transform: translateY(-1px);
-            box-shadow: 0 0 20px rgba(118, 68, 214, 0.4);
-        }
-
-        @media (max-width: 820px) {
-            .checkout-container {
-                grid-template-columns: 1fr;
-            }
-            .order-summary {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                padding: 2rem;
-            }
-            .payment-form-container {
-                padding: 2rem;
-            }
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
 <body>
 
     <div class="background-overlay"></div>
@@ -355,6 +69,9 @@
     </div>
 
     <script>
+        // Flask backend URL'nizi dinamik olarak belirleyebilirsiniz
+        const BACKEND_URL = "http://127.0.0.1:5000"; 
+        
         let cart = [];
         let user = null;
 
@@ -364,13 +81,13 @@
 
             if (!user || !user.email) {
                 alert("Ödeme yapabilmek için önce giriş yapmalısınız!");
-                window.location.href = "login.html";
+                window.location.href = "{{ url_for('login') }}";
                 return;
             }
 
             if (cart.length === 0) {
                 alert("Sepetiniz boş! Ödeme sayfasına erişilemez.");
-                window.location.href = "index.html";
+                window.location.href = "{{ url_for('index') }}";
                 return;
             }
 
@@ -399,7 +116,7 @@
             document.getElementById("checkout-total-price").innerText = `${total.toFixed(2)} ₺`;
         });
 
-        function handlePayment(event) {
+        async function handlePayment(event) {
             event.preventDefault();
             
             const payBtn = document.getElementById("pay-btn");
@@ -415,28 +132,29 @@
                 cardNumber: cleanCardNumber
             };
 
-            fetch('http://127.0.0.1:5000/api/checkout/pay', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(paymentData)
-            })
-            .then(res => res.json())
-            .then(data => {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/checkout/pay`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(paymentData)
+                });
+                
+                const data = await response.json();
+
                 if (data.success) {
                     alert(data.message);
                     localStorage.removeItem("cart");
-                    window.location.href = "index.html";
+                    window.location.href = "{{ url_for('index') }}";
                 } else {
                     alert("Ödeme Hatası: " + data.error);
                     payBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Ödemeyi Tamamla';
                     payBtn.disabled = false;
                 }
-            })
-            .catch(err => {
-                alert("Sistem hatası: Python backend ağ geçidine bağlanılamadı.");
+            } catch (err) {
+                alert("Sistem hatası: Backend ağ geçidine bağlanılamadı.");
                 payBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Ödemeyi Tamamla';
                 payBtn.disabled = false;
-            });
+            }
         }
 
         document.getElementById("card-number").addEventListener("input", function(e) {

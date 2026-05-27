@@ -274,7 +274,7 @@
         <h2><i class="fa-solid fa-shield-halved"></i> Orixa Admin</h2>
         <ul class="sidebar-menu">
             <li><a href="#" class="active"><i class="fa-solid fa-chart-line"></i> Panel Özeti</a></li>
-            <li><a href="odeme.html"><i class="fa-solid fa-credit-card"></i> Ödeme Test Alanı</a></li>
+            <li><a href="{{ url_for('odeme') }}"><i class="fa-solid fa-credit-card"></i> Ödeme Test Alanı</a></li>
             <li><a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Çıkış Yap</a></li>
         </ul>
     </div>
@@ -335,7 +335,7 @@
             }
 
             // Güvenliği artırmak adına isteğe rol doğrulama parametresi ekledik
-            fetch('http://127.0.0.1:5000/api/admin/dashboard', {
+            fetch('/api/admin/dashboard', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -378,7 +378,7 @@
         function blockAccess() {
             alert("YETKİSİZ ERİŞİM: Bu sayfaya yalnızca sistem yöneticisi erişebilir!");
             document.body.innerHTML = ""; 
-            window.location.href = "index.html"; 
+            window.location.href = "{{ url_for('index') }}"; 
         }
 
         function triggerTransfer() {
@@ -390,7 +390,7 @@
 
             alert("Güvenlik Protokolü Çalıştı:\nHavuzda biriken bakiye şifreli iZCO kanalı üzerinden, kişisel verilerinizi maskeleyerek kayıtlı IBAN adresinize aktarılmak üzere sıraya alındı!");
 
-            fetch('http://127.0.0.1:5000/api/admin/transfer', {
+            fetch('/api/admin/transfer', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: user.email })
@@ -416,7 +416,7 @@
 
         function logout() {
             localStorage.removeItem("user");
-            window.location.href = "index.html";
+            window.location.href = "{{ url_for('index') }}";
         }
     </script>
 </body>

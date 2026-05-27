@@ -23,7 +23,6 @@
                 
                 <form id="registerForm">
                     <div class="input-group">
-                        <!-- Gerçek e-posta zorunluluğu için type="email" kullandık -->
                         <input type="email" id="regEmail" required placeholder="E-posta Adresiniz">
                     </div>
                     <div class="input-group">
@@ -36,7 +35,7 @@
                 </form>
                 
                 <div class="footer-links">
-                    <a href="login.html">Zaten hesabım var</a> • <a href="index.html">Geri Dön</a>
+                    <a href="{{ url_for('login') }}">Zaten hesabım var</a> • <a href="{{ url_for('index') }}">Geri Dön</a>
                 </div>
             </div>
         </main>
