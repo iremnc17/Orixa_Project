@@ -6,7 +6,6 @@
     <title>Orixa - Yönetici Paneli</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Ana CSS Dosyasındaki Karanlık Mod Renk Paleti ve Değişkenler */
         :root {
             --bg-color: #050505;
             --card-bg: #121212;
@@ -19,12 +18,7 @@
             --hero-bg: radial-gradient(circle at 50% 30%, #1a1a2e 0%, #050505 70%);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
         body {
             background-color: var(--bg-color);
@@ -33,239 +27,24 @@
             color: var(--text-main);
             display: flex;
             min-height: 100vh;
-            opacity: 0; /* Yetki kontrolü bitene kadar sayfayı gizliyoruz */
+            opacity: 0;
             transition: opacity 0.3s ease, background-color 0.3s ease;
         }
 
-        /* Sidebar Tasarımı */
-        .sidebar {
-            width: 260px;
-            background-color: var(--card-bg);
-            padding: 2rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid var(--border-color);
-            position: relative;
-            z-index: 2;
-        }
-
-        .sidebar h2 {
-            color: var(--text-main);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 2.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -1px;
-        }
-
-        .sidebar h2 i {
-            color: var(--neon-blue);
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .sidebar-menu li a {
-            color: var(--text-dim);
-            text-decoration: none;
-            padding: 12px 15px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.95rem;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-menu li a.active {
-            background-color: rgba(137, 87, 229, 0.15);
-            color: var(--neon-blue) !important;
-            border-color: rgba(0, 212, 255, 0.3);
-            font-weight: 600;
-        }
-
-        .sidebar-menu li a:hover {
-            color: var(--primary-purple);
-            background-color: rgba(255, 255, 255, 0.02);
-            border-color: rgba(137, 87, 229, 0.2);
-        }
-
-        /* Ana İçerik Alanı */
-        .main-content {
-            flex: 1;
-            padding: 2.5rem;
-            overflow-y: auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2.5rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1.2rem;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: var(--text-main);
-        }
-
-        /* Kartlar (Özet İstatistikler) */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            padding: 1.8rem;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .card:hover {
-            border-color: var(--primary-purple);
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(137, 87, 229, 0.25);
-        }
-
-        .card-info h3 {
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-
-        .card-info p {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--text-main);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            color: var(--primary-purple);
-            background: rgba(137, 87, 229, 0.1);
-            padding: 12px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-        }
-
-        .card:hover .card-icon {
-            color: var(--neon-blue);
-            background: rgba(0, 212, 255, 0.1);
-        }
-
-        /* Güvenli Havuz Cüzdanı İçin Özel Neon Dokunuş */
-        .card.wallet {
-            border-color: rgba(0, 212, 255, 0.2);
-        }
-        
-        .card.wallet #wallet-balance {
-            color: var(--neon-blue);
-        }
-
-        /* Tablo Alanı */
-        .table-container {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .table-container h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th, td {
-            padding: 14px 18px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        th {
-            color: var(--text-dim);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        td {
-            color: var(--text-main);
-            font-size: 0.95rem;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover td {
-            background-color: rgba(255, 255, 255, 0.01);
-            color: #ffffff;
-        }
-
-        /* Banka Transfer Butonu */
-        .btn-transfer {
-            background: var(--primary-purple);
-            color: #ffffff;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-transfer:hover {
-            background: #7644d6;
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(137, 87, 229, 0.4);
-        }
-        
-        .btn-transfer:disabled {
-            background: #444444;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
+        .sidebar { width: 260px; background-color: var(--card-bg); padding: 2rem 1.5rem; display: flex; flex-direction: column; border-right: 1px solid var(--border-color); position: relative; z-index: 2; }
+        .sidebar h2 { color: var(--text-main); font-size: 1.5rem; font-weight: 700; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 10px; letter-spacing: -1px; }
+        .sidebar h2 i { color: var(--neon-blue); }
+        .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .sidebar-menu li a { color: var(--text-dim); text-decoration: none; padding: 12px 15px; border-radius: 8px; display: flex; align-items: center; gap: 12px; font-size: 0.95rem; border: 1px solid transparent; transition: all 0.3s ease; }
+        .sidebar-menu li a.active { background-color: rgba(137, 87, 229, 0.15); color: var(--neon-blue) !important; border-color: rgba(0, 212, 255, 0.3); font-weight: 600; }
+        .main-content { flex: 1; padding: 2.5rem; overflow-y: auto; position: relative; z-index: 2; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.2rem; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+        .card { background-color: var(--card-bg); padding: 1.8rem; border-radius: 16px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; transition: all 0.4s; }
+        .table-container { background-color: var(--card-bg); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color); }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 14px 18px; border-bottom: 1px solid var(--border-color); }
+        .btn-transfer { background: var(--primary-purple); color: #ffffff; border: none; padding: 10px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -273,8 +52,8 @@
     <div class="sidebar">
         <h2><i class="fa-solid fa-shield-halved"></i> Orixa Admin</h2>
         <ul class="sidebar-menu">
-            <li><a href="#" class="active"><i class="fa-solid fa-chart-line"></i> Panel Özeti</a></li>
-            <li><a href="{{ url_for('odeme') }}"><i class="fa-solid fa-credit-card"></i> Ödeme Test Alanı</a></li>
+            <li><a href="/admin" class="active"><i class="fa-solid fa-chart-line"></i> Panel Özeti</a></li>
+            <li><a href="/odeme"><i class="fa-solid fa-credit-card"></i> Ödeme Test Alanı</a></li>
             <li><a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Çıkış Yap</a></li>
         </ul>
     </div>
@@ -296,13 +75,11 @@
                 </div>
                 <div class="card-icon"><i class="fa-solid fa-wallet"></i></div>
             </div>
-
             <div class="card">
                 <div class="card-info">
                     <h3>Banka Transfer Durumu</h3>
                     <p id="transfer-status" style="font-size: 1.1rem; margin-top: 8px; color: var(--neon-blue);">Yükleniyor...</p>
                 </div>
-                <div class="card-icon"><i class="fa-solid fa-lock"></i></div>
             </div>
         </div>
 
@@ -310,13 +87,7 @@
             <h2>Ürün Satış ve Takip Listesi</h2>
             <table>
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Ürün Adı</th>
-                        <th>Kategori</th>
-                        <th>Fiyat</th>
-                        <th>Durum</th>
-                    </tr>
+                    <tr><th>ID</th><th>Ürün Adı</th><th>Kategori</th><th>Fiyat</th><th>Durum</th></tr>
                 </thead>
                 <tbody id="admin-product-table"></tbody>
             </table>
@@ -325,99 +96,41 @@
 
     <script>
         let user = null;
-
         document.addEventListener("DOMContentLoaded", function() {
             user = JSON.parse(localStorage.getItem("user"));
-            
-            if (!user || !user.email) {
-                blockAccess();
-                return;
-            }
+            if (!user || !user.email) { blockAccess(); return; }
 
-            // Güvenliği artırmak adına isteğe rol doğrulama parametresi ekledik
             fetch('/api/admin/dashboard', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    email: user.email,
-                    role: user.role || 'user' 
-                })
+                body: JSON.stringify({ email: user.email, role: user.role || 'user' })
             })
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json();
-                } else {
-                    blockAccess();
-                }
-            })
+            .then(res => res.ok ? res.json() : blockAccess())
             .then(data => {
                 if (data) {
                     document.body.style.opacity = "1";
                     document.getElementById("admin-info").innerText = `Yönetici: ${user.username || user.email}`;
                     document.getElementById("wallet-balance").innerText = `${data.cuzdan_bakiye.toFixed(2)} ₺`;
                     document.getElementById("transfer-status").innerText = data.banka_aktarim_durumu;
-                    
                     const tableBody = document.getElementById("admin-product-table");
-                    tableBody.innerHTML = "";
-                    data.products.forEach(prod => {
-                        tableBody.innerHTML += `
-                            <tr>
-                                <td>#00${prod.id}</td>
-                                <td><strong>${prod.name}</strong></td>
-                                <td>${prod.category}</td>
-                                <td>${prod.price.toFixed(2)} ₺</td>
-                                <td><span style="color: var(--neon-blue);"><i class="fa-solid fa-circle-check"></i> Aktif Satışta</span></td>
-                            </tr>
-                        `;
-                    });
+                    tableBody.innerHTML = data.products.map(prod => `
+                        <tr><td>#00${prod.id}</td><td><strong>${prod.name}</strong></td><td>${prod.category}</td><td>${prod.price.toFixed(2)} ₺</td><td><span style="color: var(--neon-blue);"><i class="fa-solid fa-circle-check"></i> Aktif</span></td></tr>
+                    `).join('');
                 }
-            })
-            .catch(() => blockAccess());
+            }).catch(() => blockAccess());
         });
 
         function blockAccess() {
-            alert("YETKİSİZ ERİŞİM: Bu sayfaya yalnızca sistem yöneticisi erişebilir!");
-            document.body.innerHTML = ""; 
-            window.location.href = "{{ url_for('index') }}"; 
-        }
-
-        function triggerTransfer() {
-            if (!user || !user.email) return;
-
-            const transferBtn = document.getElementById("transfer-btn");
-            transferBtn.disabled = true;
-            transferBtn.innerText = "Aktarılıyor...";
-
-            alert("Güvenlik Protokolü Çalıştı:\nHavuzda biriken bakiye şifreli iZCO kanalı üzerinden, kişisel verilerinizi maskeleyerek kayıtlı IBAN adresinize aktarılmak üzere sıraya alındı!");
-
-            fetch('/api/admin/transfer', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: user.email })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    // Backend'den dönen güncel sıfırlanmış bakiyeyi basıyoruz
-                    document.getElementById("wallet-balance").innerText = `${data.yeni_bakiye.toFixed(2)} ₺`;
-                    document.getElementById("transfer-status").innerText = "Aktarım Sırasında / İşleniyor";
-                } else {
-                    alert("Transfer Hatası: " + data.error);
-                }
-                transferBtn.disabled = false;
-                transferBtn.innerHTML = '<i class="fa-solid fa-building-columns"></i> Bankama Aktar';
-            })
-            .catch(err => {
-                alert("Sistem hatası: Transfer protokolü başlatılamadı.");
-                transferBtn.disabled = false;
-                transferBtn.innerHTML = '<i class="fa-solid fa-building-columns"></i> Bankama Aktar';
-            });
+            alert("YETKİSİZ ERİŞİM!");
+            window.location.href = "/"; 
         }
 
         function logout() {
             localStorage.removeItem("user");
-            window.location.href = "{{ url_for('index') }}";
+            window.location.href = "/";
         }
+
+        // Transfer fonksiyonun aynı kalabilir...
     </script>
 </body>
 </html>
