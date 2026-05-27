@@ -7,7 +7,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
+    
+    <style>
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; }
+        
+        .checkout-container {
+            max-width: 900px; margin: 150px auto 50px; padding: 40px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 16px; position: relative; z-index: 2;
+        }
+
+        .order-summary, .payment-form-container { width: 100%; }
+        
+        h2 { font-size: 1.5rem; margin-bottom: 20px; color: var(--text-main); }
+        
+        .cart-item { 
+            display: flex; justify-content: space-between; padding: 15px 0;
+            border-bottom: 1px solid var(--border-color); 
+        }
+
+        .total-price-box { 
+            margin-top: 20px; font-size: 1.2rem; font-weight: bold;
+            display: flex; justify-content: space-between; color: var(--neon-blue);
+        }
+
+        .izco-badge { 
+            background: rgba(137, 87, 229, 0.15); color: var(--primary-purple);
+            padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.9rem; }
+        
+        .input-wrapper { position: relative; }
+        .input-wrapper input { 
+            width: 100%; padding: 14px 40px 14px 16px; background: var(--input-bg);
+            border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main);
+        }
+        .input-wrapper i { position: absolute; right: 15px; top: 15px; color: var(--text-dim); }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .btn-pay { 
+            width: 100%; padding: 15px; background: var(--primary-purple);
+            border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer;
+            transition: 0.3s; margin-top: 10px;
+        }
+        .btn-pay:hover { background: #7644d6; }
+    </style>
+</head>
 <body>
 
     <div class="background-overlay"></div>
@@ -69,7 +118,6 @@
     </div>
 
     <script>
-        // Flask backend URL'nizi dinamik olarak belirleyebilirsiniz
         const BACKEND_URL = "http://127.0.0.1:5000"; 
         
         let cart = [];
@@ -106,7 +154,7 @@
                     <div class="cart-item">
                         <div class="cart-item-info">
                             <h4>${itemName}</h4>
-                            <p>ID: #00${itemId} — Optimize Geliştirici Bileşeni</p>
+                            <p style="font-size:0.8rem; color: var(--text-dim)">ID: #00${itemId}</p>
                         </div>
                         <div class="cart-item-price">${cleanPrice === 0 ? 'Ücretsiz' : cleanPrice.toFixed(2) + ' ₺'}</div>
                     </div>

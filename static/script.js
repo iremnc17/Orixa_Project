@@ -2,8 +2,7 @@ let sepet = [];
 let toplamTutar = 0;
 let localProductsPool = []; 
 
-// GÜNCELLEME: Artık localhost veya Render URL ayrımı yapmana gerek yok.
-// Sadece "/" kullanarak tarayıcının otomatik olarak ana domaini (orixa-project.onrender.com) almasını sağlıyoruz.
+// GÜNCELLEME: API_BASE_URL boş bırakılarak tarayıcının otomatik olarak ana domaini kullanması sağlandı.
 const API_BASE_URL = ""; 
 
 if (localStorage.getItem("cart")) {
