@@ -438,7 +438,7 @@ async function urunleriGetir() {
             return;
         }
 
-        const currentFile = window.location.pathname.split("/").pop();
+        const currentFile = window.pageType || window.location.pathname.split("/").pop();
         let filteredProducts = products;
 
         if (currentFile === "kodlar.html") {
