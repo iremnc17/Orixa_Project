@@ -2,9 +2,9 @@ let sepet = [];
 let toplamTutar = 0;
 let localProductsPool = []; 
 
-const API_BASE_URL = window.location.origin.includes("localhost") 
-    ? "http://127.0.0.1:5000" 
-    : "BURAYA_RENDER_URL_ADRESINI_YAZ";
+// GÜNCELLEME: Artık localhost veya Render URL ayrımı yapmana gerek yok.
+// Sadece "/" kullanarak tarayıcının otomatik olarak ana domaini (orixa-project.onrender.com) almasını sağlıyoruz.
+const API_BASE_URL = ""; 
 
 if (localStorage.getItem("cart")) {
     sepet = JSON.parse(localStorage.getItem("cart"));
