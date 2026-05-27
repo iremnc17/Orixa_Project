@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
     <div class="background-overlay"></div>
@@ -19,7 +21,8 @@
                 <li class="nav-item"><a href="{{ url_for('kodlar') }}" class="nav-links">Kod</a></li>
                 <li class="nav-item"><a href="{{ url_for('tasarimlar') }}" class="nav-links active">Tasarım</a></li>
                 <li class="nav-item"><a href="{{ url_for('rehberler') }}" class="nav-links">Rehber</a></li>
-                <li class="nav-item"><a href="#" class="nav-links theme-toggle-nav-link" onclick="temaDegistir()">🌗 Mod</a></li>
+                <li class="nav-item"><a href="#" class="nav-links theme-toggle-nav-link" onclick="temaDegistir()">🌗
+                        Mod</a></li>
                 <li class="nav-item"><a href="#" class="nav-links nav-btn">🛒 Sepet (0)</a></li>
             </ul>
         </div>
@@ -31,7 +34,7 @@
             <p class="hero-subtitle" style="margin-bottom: 20px;">
                 Projelerinize vizyon katacak, modern temalı CSS animasyonları, buton bileşenleri, asset paketleri.
             </p>
-            
+
             <div style="max-width: 500px; margin: 0 auto; position: relative;">
                 <input type="text" id="searchInput" placeholder="Tasarım paketlerinde veya bileşenlerde ara...">
             </div>
@@ -42,12 +45,17 @@
         <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 30px; color: var(--text-main);">
             🎨 Öne Çıkan Tasarım Assetleri
         </h2>
-        
+
         <div class="product-grid" id="productContainer">
             <p style="grid-column: 1/-1; text-align: center; color: var(--text-dim);">Varlıklar yükleniyor...</p>
         </div>
     </main>
-
+    <script>
+        // JS'in bu sayfanın "tasarim" sayfası olduğunu anlamasını sağlıyoruz
+        window.pageType = "tasarimlar.html";
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+
 </html>

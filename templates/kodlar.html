@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <title>Orixa | Kod Kütüphanesi</title>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <a href="{{ url_for('index') }}" class="nav-logo">ORIXA<span>.</span></a>
-            
+
             <ul class="nav-menu">
                 <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-links">Ana Sayfa</a></li>
                 <li class="nav-item"><a href="{{ url_for('kodlar') }}" class="nav-links active">Kod</a></li>
                 <li class="nav-item"><a href="{{ url_for('tasarimlar') }}" class="nav-links">Tasarım</a></li>
                 <li class="nav-item"><a href="{{ url_for('rehberler') }}" class="nav-links">Rehber</a></li>
-                <li class="nav-item"><a href="#" class="nav-links theme-toggle-nav-link" onclick="temaDegistir()">🌗 Mod</a></li>
+                <li class="nav-item"><a href="#" class="nav-links theme-toggle-nav-link" onclick="temaDegistir()">🌗
+                        Mod</a></li>
                 <li class="nav-item"><a href="#" class="nav-links nav-btn">🛒 Sepet (0)</a></li>
             </ul>
         </div>
@@ -26,7 +29,7 @@
     <div class="background-overlay"></div>
 
     <main class="page-main-container">
-        
+
         <div class="page-header-container">
             <div>
                 <h1 class="page-main-title">Kod Kütüphanesi<span>.</span></h1>
@@ -38,11 +41,17 @@
         </div>
 
         <section id="productContainer" class="product-grid">
-            <p style="color: var(--text-dim); text-align: center; grid-column: 1 / -1;">Kodlar veritabanından yükleniyor...</p>
+            <p style="color: var(--text-dim); text-align: center; grid-column: 1 / -1;">Kodlar veritabanından
+                yükleniyor...</p>
         </section>
 
     </main>
-
+    <script>
+        // JS'in bu sayfanın "kod" sayfası olduğunu anlamasını sağlıyoruz
+        window.pageType = "kodlar.html"; 
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+
 </html>
