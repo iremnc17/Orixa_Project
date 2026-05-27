@@ -24,7 +24,7 @@ function oturumArayuzunuGuncelle() {
     if (authNavContainer && aktifKullanici) {
         authNavContainer.innerHTML = `
             <span style="color: #38bdf8; font-weight: bold; margin-right: 15px; font-size: 0.95rem;">👋 Hoş geldin, ${aktifKullanici.username}</span>
-            ${aktifKullanici.is_admin === 1 ? '<a href="admin.html" class="nav-link" style="color:#a855f7; margin-right:15px; text-decoration:none; font-weight:bold;">🛠️ Panel</a>' : ''}
+            ${aktifKullanici.is_admin === 1 ? '<a href="/admin" class="nav-link" style="color:#a855f7; margin-right:15px; text-decoration:none; font-weight:bold;">🛠️ Panel</a>' : ''}
             <button onclick="oturumuKapat()" class="nav-btn" style="background: linear-gradient(135deg, #f43f5e, #e11d48); padding: 8px 16px; border: none; border-radius: 6px; color: white; cursor: pointer; font-weight: bold; font-family: 'Inter', sans-serif;">Oturumu Kapat</button>
         `;
     }
@@ -34,7 +34,7 @@ function oturumuKapat() {
     localStorage.removeItem("user");
     localStorage.removeItem("cart"); 
     showToast("Oturum güvenli bir şekilde kapatıldı.", "success");
-    setTimeout(() => { window.location.href = "index.html"; }, 1000);
+    setTimeout(() => { window.location.href = "/"; }, 1000);
 }
 
 function sepeteEkle(urunAdi, fiyat, id) {
@@ -273,16 +273,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('user', JSON.stringify(result.user));
                     
                     if (result.user.is_admin === 1) {
-                        setTimeout(() => { window.location.href = 'admin.html'; }, 1200);
+                        setTimeout(() => { window.location.href = '/admin'; }, 1200);
                         return;
                     }
 
                     const bekleyenSepet = JSON.parse(localStorage.getItem("cart")) || [];
                     setTimeout(() => { 
                         if (bekleyenSepet.length > 0) {
-                            window.location.href = 'odeme.html';
+                            window.location.href = '/odeme';
                         } else {
-                            window.location.href = 'index.html'; 
+                            window.location.href = '/'; 
                         }
                     }, 1500);
                 } else {
@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     showToast("Kayıt başarılı! Giriş sayfasına yönlendiriliyorsunuz.", "success");
 
-                    setTimeout(() => { window.location.href = 'login.html'; }, 2000);
+                    setTimeout(() => { window.location.href = '/login'; }, 2000);
                 } else {
                     showToast(result.error, "error");
                 }
@@ -388,9 +388,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (!aktifKullanici || !aktifKullanici.email) {
                     alert("Satın alma aşamasına geçebilmek için önce giriş yapmalısınız!\nSepetiniz güvenle hafızaya kilitlendi.");
-                    window.location.href = "login.html"; 
+                    window.location.href = "/login"; 
                 } else {
-                    window.location.href = "odeme.html"; 
+                    window.location.href = "/odeme"; 
                 }
             });
         }
